@@ -1,30 +1,15 @@
 # pxt-mcp23017-easy12
 
+The MakerBit connects to the BBC micro:bit or Calliope Mini with Callio:bit M to provide easy connections to a wide variety of sensors, actuators and other components. This is a package for Microsoft Makecode.
 
+| ![IOExpander & MakerBit](https://github.com/MKleinSB/pxt-MCP23017-easy12/blob/master/1.JPG "IOExpander & MakerBit") | ![MakerBit+R](https://github.com/MKleinSB/pxt-MCP23017-easy12/blob/master/2.JPG "IOExpander & Calliope Mini") |
+| :----------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------: |
+|                                            _IOExpander & MakerBit_                                            |                                   _IOExpander & Calliope Mini_                                   |
 
-## Usage
-
-This repository contains a MakeCode extension. To use it in MakeCode,
-
-* open /
-* click on **New Project**
-* click on **Extensions** under the gearwheel menu
-* search for the URL of this repository
-
-## Collaborators
-
-You can invite users to become collaborators to this repository. This will allow multiple users to work on the same project at the same time.
-[Learn more...](https://help.github.com/en/articles/inviting-collaborators-to-a-personal-repository)
-
-To edit this repository in MakeCode,
-
-* open /
-* click on **Import** then click on **Import URL**
-* paste the repository URL and click import
 
 ## Supported targets
 
 * for PXT/calliopemini
-* for PXT/calliopemini
+* for PXT/microbit
 (The metadata above is needed for package search.)
 
