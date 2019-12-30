@@ -9,6 +9,10 @@ This makecode Extension provides easy to use Blocks for it. Hackster project and
 | :----------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------: |
 |                                            _IOExpander & MakerBit_                                            |                                   _IOExpander & Calliope Mini_                                   |
 
+| ![IOExpander & MakerBit](https://github.com/MKleinSB/pxt-MCP23017-easy12/blob/master/3.png "IOExpander & MakerBit") | ![MakerBit+R](https://github.com/MKleinSB/pxt-MCP23017-easy12/blob/master/4.png "IOExpander & Calliope Mini") |
+| :----------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------: |
+
+
 
 ## Supported targets
 
