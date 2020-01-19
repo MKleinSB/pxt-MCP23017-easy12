@@ -5,7 +5,7 @@
 // Basierend auf der tollen Grundlagenseite 
 // http://robert-fromm.info/?post=elec_i2c_calliope
 // (cc) Creative Commons Robert Fromm 2017
-// setLED und Makecode / pxt-Paket (cc) 1.11.2019  M. Klein v1.0
+// setLED und Makecode / pxt-Paket (cc) 19.01.2020  M. Klein v1.1
 
 const enum State {
     //% block="On"
@@ -20,7 +20,7 @@ const enum REG_MCP {
     //% Bitmuster um Register B zu beschreiben
     Bitmuster_B = 0x13,
     //% Aus- / Eingaberichtung des Registers A
-    EinOderAusgabe_A = 0x00, 
+    EinOderAusgabe_A = 0x00,
     //% Aus- / Eingaberichtung des Registers B
     EinOderAusgabe_B = 0x01,
     //% Pullup Widerstände Register A
@@ -62,7 +62,7 @@ let BitwertA = 0;
 let BitwertB = 0;
 
 //% color=#0fbc11 icon="\uf2db"
-//% groups=['On Start','LEDs']
+//% groups="['On Start','LEDs']"
 
 namespace MCP23017 {
 
@@ -78,7 +78,7 @@ namespace MCP23017 {
         // Alle Register auf Ausgabe stellen
         MCP23017.writeRegister(ADDRESS.A20, REG_MCP.EinOderAusgabe_A, MCP23017.bitwert(BITS.keiner))
         MCP23017.writeRegister(ADDRESS.A20, REG_MCP.EinOderAusgabe_B, MCP23017.bitwert(BITS.keiner))
-        // Pullup-Widerständ für saubere Signalübertragung ein!
+        // Pullup-Widerstände für saubere Signalübertragung ein!
         MCP23017.writeRegister(ADDRESS.A20, REG_MCP.PullUp_Widerstaende_A, MCP23017.bitwert(BITS.Alle))
         MCP23017.writeRegister(ADDRESS.A20, REG_MCP.PullUp_Widerstaende_B, MCP23017.bitwert(BITS.Alle))
     }
@@ -95,6 +95,34 @@ namespace MCP23017 {
     export function setLeds(zustand: State): void {
         for (let i = 1; i <= 12; i++) {
             setLed(i, zustand);
+        }
+    }
+
+    /**
+     * Schaltet die LEDs wie ein Balken-/Säulendiagramm
+     * MCP23017 muss vorher für LEDs programmiert sein.
+     * @param von: Wert der auf den 12 LEDs dargestellt werden soll
+     * @param bis: Maximalwert (bei Analogwert i.d.R. 1023)
+     */
+    //% blockId="plotBarGraph"
+    //% block="plot bar graph of %von| up to %bis" blockExternalInputs=true
+    //% weight=86
+    //% group="LEDs"
+    export function plotBarGraph(von: number, bis: number): void {
+        let ledZahl = 0
+        setLeds(State.Low) // LED ausschalten
+        if (von > bis || bis == 0) {
+            return;
+            ledZahl = pins.map(
+                von,
+                0,
+                bis,
+                0,
+                11
+            )
+            for (let index = 0; index < ledZahl; index++) {
+                setLed(index, State.High);
+            }
         }
     }
 
