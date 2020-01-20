@@ -5,7 +5,7 @@
 // Basierend auf der tollen Grundlagenseite 
 // http://robert-fromm.info/?post=elec_i2c_calliope
 // (cc) Creative Commons Robert Fromm 2017
-// setLED und Makecode / pxt-Paket (cc) 19.01.2020  M. Klein v1.1
+// setLED und Makecode / pxt-Paket (cc) 20.01.2020  M. Klein v1.1
 
 const enum State {
     //% block="On"
@@ -81,6 +81,7 @@ namespace MCP23017 {
         // Pullup-Widerstände für saubere Signalübertragung ein!
         MCP23017.writeRegister(ADDRESS.A20, REG_MCP.PullUp_Widerstaende_A, MCP23017.bitwert(BITS.Alle))
         MCP23017.writeRegister(ADDRESS.A20, REG_MCP.PullUp_Widerstaende_B, MCP23017.bitwert(BITS.Alle))
+        MCP23017.setLeds(State.Low) // alle LEDs ausschalten
     }
 
     /**
@@ -113,17 +114,18 @@ namespace MCP23017 {
         setLeds(State.Low) // LED ausschalten
         if (von > bis || bis == 0) {
             return;
-            ledZahl = pins.map(
-                von,
-                0,
-                bis,
-                0,
-                11
-            )
-            for (let index = 0; index < ledZahl; index++) {
-                setLed(index, State.High);
-            }
         }
+        ledZahl = pins.map(
+            von,
+            0,
+            bis,
+            0,
+            11
+        )
+        for (let index = 0; index < ledZahl; index++) {
+            setLed(index, State.High);
+        }
+
     }
 
     /**
