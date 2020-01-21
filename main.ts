@@ -5,7 +5,7 @@
 // Basierend auf der tollen Grundlagenseite 
 // http://robert-fromm.info/?post=elec_i2c_calliope
 // (cc) Creative Commons Robert Fromm 2017
-// setLED und Makecode / pxt-Paket (cc) 20.01.2020  M. Klein v1.1
+// setLED und Makecode / pxt-Paket (cc) 21.01.2020  M. Klein v1.1
 
 const enum State {
     //% block="On"
@@ -120,9 +120,9 @@ namespace MCP23017 {
             0,
             bis,
             0,
-            11
+            12
         )
-        for (let index = 0; index < ledZahl; index++) {
+        for (let index = 1; index <= ledZahl; index++) {
             setLed(index, State.High);
         }
 
