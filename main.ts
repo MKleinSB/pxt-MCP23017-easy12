@@ -65,6 +65,8 @@ let BitwertB = 0;
 //% groups='["On Start","LEDs"]'
 
 namespace MCP23017 {
+    
+    let initialized = false;
 
     /**
      * Sets the Registers of the MCP23017 to write 
@@ -81,7 +83,8 @@ namespace MCP23017 {
         // Pullup-Widerstände für saubere Signalübertragung ein!
         MCP23017.writeRegister(ADDRESS.A20, REG_MCP.PullUp_Widerstaende_A, MCP23017.bitwert(BITS.Alle))
         MCP23017.writeRegister(ADDRESS.A20, REG_MCP.PullUp_Widerstaende_B, MCP23017.bitwert(BITS.Alle))
-        MCP23017.setLeds(State.Low) // alle LEDs ausschalten
+        MCP23017.setLeds(State.Low); // alle LEDs ausschalten
+        initialized = true
     }
 
     /**
@@ -141,6 +144,9 @@ namespace MCP23017 {
     //% group="LEDs"
 
     export function setLed(name: number, zustand: State): void {
+        if (!initialized) {
+            initMCP23017LED();
+        }
         if (name < 1 || name > 16) {
             return;
         }
