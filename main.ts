@@ -73,7 +73,7 @@ namespace MCP23017 {
     //% blockId="initMCP23017LED"
     //% block="initialise MCP23017 for 12 LEDs"
     //% weight=100
-    //% groups="On Start"
+    //% group="On Start"
     export function initMCP23017LED(): void {
         // Alle Register auf Ausgabe stellen
         MCP23017.writeRegister(ADDRESS.A20, REG_MCP.EinOderAusgabe_A, MCP23017.bitwert(BITS.keiner))
@@ -111,7 +111,7 @@ namespace MCP23017 {
     //% group="LEDs"
     export function plotBarGraph(von: number, bis: number): void {
         let ledZahl = 0
-        setLeds(State.Low) // LED ausschalten
+        setLeds(State.Low) // LEDs ausschalten
         if (von > bis || bis == 0) {
             return;
         }
