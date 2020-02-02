@@ -37,15 +37,7 @@ const enum ADDRESS {
     //% block=0x22
     A22 = 0x22,
     //% block=0x23
-    A23 = 0x23,
-    //% block=0x24
-    A24 = 0x24,
-    //% block=0x25
-    A25 = 0x25,
-    //% block=0x26
-    A26 = 0x26,
-    //% block=0x27
-    A27 = 0x27
+    A23 = 0x23
 }
 const enum BITS {
     //% block=11111111
@@ -65,25 +57,17 @@ let BitwertB = 0;
 //% groups='["On Start","LEDs"]'
 
 namespace MCP23017 {
-    
-    let initialized = false;
 
-    /**
-     * Sets the Registers of the MCP23017 to write 
-     * and the pull-ups to high
-     */
-    //% blockId="initMCP23017LED"
-    //% block="initialise MCP23017 for 12 LEDs"
-    //% weight=100
-    //% group="On Start"
-    export function initMCP23017LED(): void {
+    let initialized = false
+
+    function initMCP23017LED(): void {
         // Alle Register auf Ausgabe stellen
         MCP23017.writeRegister(ADDRESS.A20, REG_MCP.EinOderAusgabe_A, MCP23017.bitwert(BITS.keiner))
         MCP23017.writeRegister(ADDRESS.A20, REG_MCP.EinOderAusgabe_B, MCP23017.bitwert(BITS.keiner))
         // Pullup-Widerstände für saubere Signalübertragung ein!
         MCP23017.writeRegister(ADDRESS.A20, REG_MCP.PullUp_Widerstaende_A, MCP23017.bitwert(BITS.Alle))
         MCP23017.writeRegister(ADDRESS.A20, REG_MCP.PullUp_Widerstaende_B, MCP23017.bitwert(BITS.Alle))
-        MCP23017.setLeds(State.Low); // alle LEDs ausschalten
+        MCP23017.setLeds(State.Low) // alle LEDs ausschalten
         initialized = true
     }
 
@@ -144,8 +128,8 @@ namespace MCP23017 {
     //% group="LEDs"
 
     export function setLed(name: number, zustand: State): void {
-        if (!initialized) {
-            initMCP23017LED();
+        if (!initialized) {     // schon initialisiert?
+            initMCP23017LED
         }
         if (name < 1 || name > 16) {
             return;
