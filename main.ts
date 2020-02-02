@@ -62,19 +62,17 @@ let BitwertA = 0;
 let BitwertB = 0;
 
 //% color=#0fbc11 icon="\uf2db"
-//% groups='["On Start","LEDs"]'
-
 namespace MCP23017 {
+
+    let initialized = false
 
     /**
      * Sets the Registers of the MCP23017 to write 
      * and the pull-ups to high
+     * initialise MCP23017 for 12 LEDs
      */
-    //% blockId="initMCP23017LED"
-    //% block="initialise MCP23017 for 12 LEDs"
-    //% weight=100
-    //% group="On Start"
-    export function initMCP23017LED(): void {
+
+    function initMCP23017LED(): void {
         // Alle Register auf Ausgabe stellen
         MCP23017.writeRegister(ADDRESS.A20, REG_MCP.EinOderAusgabe_A, MCP23017.bitwert(BITS.keiner))
         MCP23017.writeRegister(ADDRESS.A20, REG_MCP.EinOderAusgabe_B, MCP23017.bitwert(BITS.keiner))
@@ -82,6 +80,7 @@ namespace MCP23017 {
         MCP23017.writeRegister(ADDRESS.A20, REG_MCP.PullUp_Widerstaende_A, MCP23017.bitwert(BITS.Alle))
         MCP23017.writeRegister(ADDRESS.A20, REG_MCP.PullUp_Widerstaende_B, MCP23017.bitwert(BITS.Alle))
         MCP23017.setLeds(State.Low) // alle LEDs ausschalten
+        initialized = true //fertig initialisiert
     }
 
     /**
@@ -143,6 +142,9 @@ namespace MCP23017 {
     export function setLed(name: number, zustand: State): void {
         if (name < 1 || name > 16) {
             return;
+        }
+        if (!initialized) {
+            initMCP23017LED();
         }
         if (zustand == State.High) { //LEDs an
             if (name > 0 && name < 7) { // Register A
