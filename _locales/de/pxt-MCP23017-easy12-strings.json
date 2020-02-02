@@ -2,7 +2,7 @@
     "State.High|block": "An",
     "State.Low|block": "Aus",
     "MCP23017.setLeds|block": "schalte alle LEDs %zustand",
-    "MCP23017.setLed|block": "schalte LED %name | %zustand",
+    "MCP23017.setLed|block": "schalte LED %name | auf %zustand",
     "MCP23017.plotBarGraph|block": "zeichne Balkendiagramm von %von| bis %bis",
     "{id:category}MCP23017": "MCP23017easy12"
 }
