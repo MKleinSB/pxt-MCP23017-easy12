@@ -37,7 +37,15 @@ const enum ADDRESS {
     //% block=0x22
     A22 = 0x22,
     //% block=0x23
-    A23 = 0x23
+    A23 = 0x23,
+    //% block=0x24
+    A24 = 0x24,
+    //% block=0x25
+    A25 = 0x25,
+    //% block=0x26
+    A26 = 0x26,
+    //% block=0x27
+    A27 = 0x27
 }
 const enum BITS {
     //% block=11111111
@@ -54,13 +62,19 @@ let BitwertA = 0;
 let BitwertB = 0;
 
 //% color=#0fbc11 icon="\uf2db"
-//% groups='["On Start","LEDs"]'
+//% groups=["On Start","LEDs"]
 
 namespace MCP23017 {
 
-    let initialized = false
-
-    function initMCP23017LED(): void {
+    /**
+     * Sets the Registers of the MCP23017 to write 
+     * and the pull-ups to high
+     */
+    //% blockId="initMCP23017LED"
+    //% block="initialise MCP23017 for 12 LEDs"
+    //% weight=100
+    //% group="On Start"
+    export function initMCP23017LED(): void {
         // Alle Register auf Ausgabe stellen
         MCP23017.writeRegister(ADDRESS.A20, REG_MCP.EinOderAusgabe_A, MCP23017.bitwert(BITS.keiner))
         MCP23017.writeRegister(ADDRESS.A20, REG_MCP.EinOderAusgabe_B, MCP23017.bitwert(BITS.keiner))
@@ -68,7 +82,6 @@ namespace MCP23017 {
         MCP23017.writeRegister(ADDRESS.A20, REG_MCP.PullUp_Widerstaende_A, MCP23017.bitwert(BITS.Alle))
         MCP23017.writeRegister(ADDRESS.A20, REG_MCP.PullUp_Widerstaende_B, MCP23017.bitwert(BITS.Alle))
         MCP23017.setLeds(State.Low) // alle LEDs ausschalten
-        initialized = true
     }
 
     /**
@@ -98,7 +111,7 @@ namespace MCP23017 {
     //% group="LEDs"
     export function plotBarGraph(von: number, bis: number): void {
         let ledZahl = 0
-        setLeds(State.Low) // LEDs ausschalten
+        setLeds(State.Low) // LED ausschalten
         if (von > bis || bis == 0) {
             return;
         }
@@ -128,9 +141,6 @@ namespace MCP23017 {
     //% group="LEDs"
 
     export function setLed(name: number, zustand: State): void {
-        if (!initialized) {     // schon initialisiert?
-            initMCP23017LED
-        }
         if (name < 1 || name > 16) {
             return;
         }
