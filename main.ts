@@ -37,15 +37,7 @@ const enum ADDRESS {
     //% block=0x22
     A22 = 0x22,
     //% block=0x23
-    A23 = 0x23,
-    //% block=0x24
-    A24 = 0x24,
-    //% block=0x25
-    A25 = 0x25,
-    //% block=0x26
-    A26 = 0x26,
-    //% block=0x27
-    A27 = 0x27
+    A23 = 0x23
 }
 const enum BITS {
     //% block=11111111
