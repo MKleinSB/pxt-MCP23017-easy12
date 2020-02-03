@@ -54,7 +54,7 @@ let BitwertA = 0;
 let BitwertB = 0;
 
 //% color=#0fbc11 icon="\uf2db"
-//% groups=["On Start","LEDs"]
+//% groups='["On Start","LEDs"]'
 namespace MCP23017 {
 
     /**
