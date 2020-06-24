@@ -1,3 +1,4 @@
+
 /**
  * MCP23017-Interfacefunktionen für 12 LEDs
  * für eine kommende Erweiterung für den Makerbit und den Calliope Mini
@@ -5,7 +6,7 @@
 // Basierend auf der tollen Grundlagenseite 
 // http://robert-fromm.info/?post=elec_i2c_calliope
 // (cc) Creative Commons Robert Fromm 2017
-// setLED und Makecode / pxt-Paket (cc) 21.01.2020  M. Klein v1.1
+// setLED und Makecode / pxt-Paket (cc) 24.06.2020  M. Klein v1.2
 
 const enum State {
     //% block="On"
@@ -164,6 +165,31 @@ namespace MCP23017 {
         }
 
     }
+ 
+    /**
+     * Klicke ein Feld an, um die LED anzuschalten
+     */
+    //% block="ClickLED"
+    //% imageLiteral=1
+    //% imageLiteralColumns=12
+    //% imageLiteralRows=1
+    //% group="LEDs"
+    export function ClickLED(i: string): void {
+        // this is not pretty but basically, i is an Image
+        let im = <Image><any>i;
+        // im.showImage(0) 
+        // im.showImage(5) 
+        // im.showImage(10)
+        // im.scrollImage(1, 200)
+        for (let column = 0; column < 12; column++) {
+         if (im.pixel(column, 0)) {
+            setLed(column+1,State.High);
+            //basic.showNumber(column)   
+        }     else {
+            setLed(column+1,State.Low)
+            }
+       }  
+    } 
 
     /**
      * Schreibt in ein Register einen bestimmten Bitwert
