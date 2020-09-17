@@ -6,6 +6,6 @@
     "MCP23017.setLed|block": "schalte LED %name | %zustand",
     "MCP23017.plotBarGraph|block": "zeichne Balkendiagramm von %von| bis %bis",
     "{id:category}MCP23017": "MCP23017easy12",
-    "{id:groups}On Start": "Beim Start",
-    "{id:groups}LEDs": "LEDs"
+    "{id:group}On Start": "Beim Start",
+    "{id:group}LEDs": "LEDs"
 }
