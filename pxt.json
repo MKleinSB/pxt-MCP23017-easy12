@@ -1,7 +1,7 @@
 {
     "name": "pxt-MCP23017-easy12",
-    "version": "0.0.17",
-    "description": "",
+    "version": "0.0.18",
+    "description": "Easy to use Blocks for the MCP23017 driver",
     "dependencies": {
         "core": "*",
         "radio": "*"
